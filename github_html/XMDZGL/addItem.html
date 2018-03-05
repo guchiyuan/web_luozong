@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" rel="stylesheet">
+  <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css"
+        rel="stylesheet">
+  <link href="../../js/thirdparty/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet"> -->
+  <title>新建项目</title>
+  <style media="screen">
+  </style>
+</head>
+
+<body>
+  <!-- <div id="panelContainer" class="container"> -->
+  <div id="panelXMXX" class="panel panel-default">
+    <div class="panel-heading text-center" style="height:55px">
+      <ul class="pager" style="margin:0">
+        <li>
+          <a id="linkXMXX" href="#">项目信息</a>
+        </li>
+        <li>
+          <a id="linkDCXX" href="#">调查信息</a>
+        </li>
+        <li>
+          <a id="linkFCQLR" href="#">房产权利人</a>
+        </li>
+        <li>
+          <a id="linkLJZLB" href="#">逻辑幢列表</a>
+        </li>
+        <li>
+          <a id="linkPMT" href="#">平面图</a>
+        </li>
+      </ul>
+    </div>
+    <div class="panel-body">
+
+    </div>
+
+    <div class="panel-footer">
+      <button class="btn btn-default pull-right" id="close">关闭</button>&nbsp;&nbsp;
+      <button class="btn btn-default pull-right" id="save">保存</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+
+
+  <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap/js/bootstrap-v3.min.js"></script>
+  <script src="../../js/thirdparty/layer/layer.js"></script>
+  <script src="../../js/thirdparty/laypage/laypage.js"></script>
+  <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+  <script src="../../js/thirdparty/laydate/laydate.js"></script>
+
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script> -->
+  <script src="../../js/XMDZGL/addItem.js"></script>
+  <!-- <script src="../../js/XMDZGL/laydate/laydate.js"></script> -->
+  <!-- <script src="laydate/laydate.js"></script> -->
+
+
+  <!-- 项目信息页面模板 -->
+  <script id="panelXMXXTpl" type="x-tpl-mustache">
+    <form id="formXMXX" class="form-inline">
+
+
+      <div class="col-xs-12 form-group form-inline">
+
+        <div class="col-xs-8 form-group form-inline">
+          <label class="form-label" for="XMXX_XMMC">项目名称：</label>
+          <input class="form-control" type="text" id="XMXX_XMMC" name="" value="{{xmmc}}">
+        </div>
+
+        <div class="col-xs-4 form-group form-inline">
+          <label class="control-label text-right" for="XMXX_ZL">坐落：</label>
+          <input class="form-control" id="XMXX_ZL" type="text" name="" value="{{zl}}">
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 form-group form-inline">
+
+        <div class="col-xs-6 form-group form-inline">
+          <label class="col-xs-4 form-label" for="XMXX_FWLX" style="padding-left:0">房屋类型：</label>
+          <div class="col-xs-8">
+            <select class="form-control" id="XMXX_FWLX" name="">
+              <option value="1">住宅</option>
+              <option value="2">商业用房</option>
+              <option value="3">办公用房</option>
+              <option value="4">工业用房</option>
+              <option value="5">仓储用房</option>
+              <option value="6">车库</option>
+              <option value="99">其它</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-xs-6 form-group form-inline">
+          <label class="col-xs-4 form-label" for="XMXX_FWXZ" style="padding-left:0">房屋性质：</label>
+          <div class="col-xs-8">
+            <select class="form-control" id="XMXX_FWXZ" name="">
+              <option value="0">市场化商品房</option>
+              <option value="1">动迁房</option>
+              <option value="2">配套商品房</option>
+              <option value="3">公共租赁住房</option>
+              <option value="4">廉租住房</option>
+              <option value="5">限价普通商品住房</option>
+              <option value="6">经济适用住房</option>
+              <option value="7">定销商品房</option>
+              <option value="8">集资建房</option>
+              <option value="9">福利房</option>
+              <option value="99">其它</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="col-xs-12 form-group form-inline">
+
+        <div class="col-xs-4 form-group form-inline">
+          <label class="form-label" for="XMXX_DYMJ">独用面积：</label>
+          <input class="form-control" id="XMXX_DYMJ" type="text" name="" value="0">
+        </div>
+
+        <div class="col-xs-4 form-group form-inline">
+          <label class="form-label" for="XMXX_FTMJ">分摊面积：</label>
+          <input class="form-control" id="XMXX_FTMJ" type="text" name="" value="0">
+        </div>
+
+        <div class="col-xs-4 form-group form-inline">
+          <label class="form-label" for="XMXX_JYJG">交易价格：</label>
+          <input class="form-control" id="XMXX_JYJG" type="text" name="" value="0">
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-12 form-group form-inline">
+          <label class="form-label" for="XMXX_BZ" style="width: auto;">备注：</label>
+          <textarea class="form-control" id="XMXX_BZ" name="name" style="display:inline;">{{bz}}</textarea>
+        </div>
+
+      </div>
+
+    </form>
+  </script>
+
+  <!-- 调查信息页面模板 -->
+  <script id="panelDCXXTpl" type="x-tpl-mustache">
+    <form class="form-inline" id="formDCXX">
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_CQLY">产权来源：</label>
+          <textarea class="form-control" id="DCXX_CQLY" name="name">{{cqly}}</textarea>
+        </div>
+
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_GYQK">共有情况：</label>
+          <textarea class="form-control" id="DCXX_GYQK" name="name">{{gyqk}}</textarea>
+        </div>
+      </div>
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_FJSM">附加说明：</label>
+          <textarea class="form-control" id="DCXX_FJSM" name="name">{{fjsm}}</textarea>
+        </div>
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_DCYJ">调查意见：</label>
+          <textarea class="form-control" id="DCXX_DCYJ" name="name">{{dcyj}}</textarea>
+        </div>
+      </div>
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline col-xs-4">
+          <label class="form-label text-right" for="DCXX_DCZ">调查者：</label>
+          <input class="form-control" type="text" id="DCXX_DCZ" name="" value="{{dcz}}">
+        </div>
+        <div class="col-xs-6 form-group form-inline col-xs-4 col-xs-push-4">
+          <label class="form-label text-right" for="DCXX_DCSJ">调查时间：</label>
+          <input class="form-control" type="text" id="DCXX_DCSJ" name="" value="{{format dcsj}}">
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <!-- 发产权利人详细信息模板 -->
+  <script id="panelFCQLRTpl" type="x-tpl-mustache">
+    <div id="toolbarQLR">
+      <a id="addQLR" class="btn btn-primary btn-xs btn-add" href="javascript:addQLR();">添加权利人</a>
+    </div>
+    <table class="table" id="tb_FCQLR">
+    </table>
+  </script>
+
+  <!-- 逻辑幢详细信息模板 -->
+  <script id="panelLJZLBTpl" type="x-tpl-mustache">
+    <div id="toolbarLJZ">
+      <a id="addLJZ" class="btn btn-primary btn-xs btn-add" href="javascript:addLJZ();">添加逻辑幢</a>
+    </div>
+    <table class="table" id="tb_LJZLB">
+    </table>
+  </script>
+
+  <!-- 平面图信息模板 -->
+  <script id="panelPMTTpl" type="x-tpl-mustache">
+
+  </script>
+
+  <!-- 房屋类型条件显示模板 -->
+  <!-- <script id="XMDZGLConditionTpl" type="text/x-tpl-handlebars">
+    {{#condition}}
+    <option value="">{{fwlx}}</option>
+    {{/condition}}
+  </script> -->
+
+</body>
+
+</html>

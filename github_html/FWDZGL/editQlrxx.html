@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" rel="stylesheet">
+  <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css"
+        rel="stylesheet">
+  <link href="../../js/thirdparty/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet"> -->
+  <!-- <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet"> -->
+  <title>添加权利人</title>
+  <style media="screen">
+    body {
+      font-size: 12px;
+    }
+    label {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="panelFCQLRTpl" class="panel panel-default">
+    <div class="panel-body">
+
+    </div>
+    <div class="panel-footer">
+      <button class="btn btn-default pull-right" id="close">关闭</button>&nbsp;&nbsp;
+      <button class="btn btn-default pull-right" id="save">保存</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+
+
+  <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap/js/bootstrap-v3.min.js"></script>
+  <script src="../../js/thirdparty/layer/layer.js"></script>
+  <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+
+
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script>
+  <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script> -->
+  <script src="../../js/FWDZGL/editQlrxx.js"></script>
+
+  <script id="panelAddandEditFCQLRTpl" type="x-tpl-mustache">
+  <form id="formQLR">
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLR">权利人：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_QLR" name="" value="{{qlr}}">
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLRBH">权利人编号：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_QLRBH" name="" value="{{qlrbh}}">
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLRZJLX">证件类型：</label>
+        <div class="col-xs-4">
+          <select class="form-control" id="QLRXX_QLRZJLX" name="">
+            <option selected disabled value="">请选择...</option>
+            <option value="1">身份证</option>
+            <option value="2">港澳台身份证</option>
+            <option value="3">护照</option>
+            <option value="4">户口簿</option>
+            <option value="5">军官证（士兵证）</option>
+            <option value="6">组织机构代码</option>
+            <option value="7">营业执照</option>
+            <option value="99">其它</option>
+          </select>
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLRZJH">权利人证件号：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_QLRZJH" name="" value="{{qlrzjh}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_FZJG">发证机关：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_FZJG" name="" value="{{fzjg}}">
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_XB">性别：</label>
+        <div class="col-xs-4">
+          <select class="form-control" id="QLRXX_XB" name="">
+            <option selected disabled value="">请选择...</option>
+            <option value="1">男性</option>
+            <option value="2">女性</option>
+            <option value="3">不详</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_DH">电话：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_DH" name="" value="{{dh}}">
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_DZ">地址：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_DZ" name="" value="{{dz}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_YB">邮编：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_YB" name="" value="{{yb}}">
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_GZDW">工作单位：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_GZDW" name="" value="{{gzdw}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLRXZ">权利人性质：</label>
+        <div class="col-xs-4">
+          <select class="form-control" id="QLRXX_QLRXZ" name="">
+            <option selected disabled value="">请选择...</option>
+            <option value="1">个人</option>
+            <option value="2">企业</option>
+            <option value="3">事业单位</option>
+            <option value="4">国家机关</option>
+            <option value="99">其它</option>
+          </select>
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_GYFS">共有方式：</label>
+        <div class="col-xs-4">
+          <select class="form-control" id="QLRXX_GYFS" name="">
+            <option selected disabled value="">请选择...</option>
+            <option value="0">单独所有</option>
+            <option value="1">共同共有</option>
+            <option value="2">按份共有</option>
+            <option value="3">其它共有</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLBL">权利比例：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_QLBL" name="" value="{{qlbl}}">
+        </div>
+        <label class="col-xs-2 control-label text-right" for="QLRXX_QLMJ">权利面积：</label>
+        <div class="col-xs-4">
+          <input class="form-control" type="text" id="QLRXX_QLMJ" name="" value="{{qlmj}}">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group form-inline">
+      <div class="col-xs-12">
+        <label class="col-xs-2 control-label text-right" for="QLRXX_BZ">备注：</label>
+        <div class="col-xs-10">
+          <input class="form-control" type="text" id="QLRXX_BZ" name="" value="{{bz}}">
+        </div>
+      </div>
+    </div>
+  </form>
+  </script>
+</body>
+
+</html>

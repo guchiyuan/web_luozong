@@ -1,0 +1,22 @@
+{
+  "config": {
+    "addFwXmxx": {
+      "url": "/estateplat-cadastre/fwXmGl/addFwXmxx"
+    },
+    "saveFwXmxx": {
+      "url": "/estateplat-cadastre/fwXmGl/saveFwXmxx"
+    },
+    "queryFwFcqlr": {
+      "url": "/estateplat-cadastre/qlr/queryFwFcqlr"
+    },
+    "delFwFcqlr": {
+      "url": "/estateplat-cadastre/qlr/delFwFcqlr"
+    },
+    "queryFwLjz": {
+      "url": "/estateplat-cadastre/fwXmGl/queryFwLjz"
+    },
+    "addressAddQlrxx": {
+      "url": "/estateplat-cadastre/static/html/XMDZGL/addQlrxx.html"
+    }
+  }
+}

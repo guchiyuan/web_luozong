@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
+    <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" type="text/css"
+          rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../js/thirdparty/laypage/skin/laypage.css" id="laypagecss">
+    <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+    <script src="../../js/thirdparty/jquery/jquery.form.js"></script>
+    <script src="../../js/ImportScLpb/ImportScLpb.js"></script>
+
+    <!--[if IE]><script type="text/javascript" src="../../js/thirdparty/excanvas/excanvas.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../../js/thirdparty/h-ui/lib/html5.js"></script>
+    <script type="text/javascript" src="../../js/thirdparty/h-ui/lib/respond.min.js"></script>
+    <script type="text/javascript" src="../../js/thirdparty/h-ui/lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <style>
+        .bottomrightbtn{
+            bottom: 3px;
+            right: 5px;
+            display: block;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        <!-- 添加按钮-->
+        function addOne(){
+            var fragment=document.createDocumentFragment();
+            var divNode=document.getElementById("addBody");
+            var newDiv=document.createElement("tr");
+            fragment.appendChild(newDiv);
+            newDiv.innerHTML=
+                "<tr> <td></td>" +
+                "<td><input type='file' name='myfile' style='float: left' /></td>" +
+                "<td><input type='button' value='删掉' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)' ></td>" +
+                "</tr>";
+            divNode.appendChild(fragment);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <form  method="post" id="submitForm"
+          enctype="multipart/form-data">
+        <table id="addTable" class="table table-responsive table-striped table-bordered table-hover">
+            <tbody id="addBody">
+            <tr>
+                <th class="text-center">逻辑幢名称</th>
+                <th class="text-center">文件名称</th>
+                <th class="text-center">操作项</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type='file' name='myfile'  style="float: left"/></td>
+                <td><input type='button' value='删掉' onclick='this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode)' ></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="bottomrightbtn">
+            <input type="button" value="添加" onclick="addOne()">
+            <input type="submit" value="上传">
+        </div>
+    </form>
+</div>
+</body>
+</html>

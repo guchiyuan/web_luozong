@@ -1,0 +1,34 @@
+{
+    "queryConfig": {
+      "queryType":
+        [
+          {"csmc":"按户查询","csz":"hcx"},
+          {"csmc":"按逻辑幢查询","csz":"lcx"}
+        ]
+      ,
+        "getCondition": {
+            "url": "test.txt"
+        },
+      "getCondition1": {
+        "url": "/estateplat-cadastre/lpbGl/getCxtj1ByCxfs"
+      },
+      "getCondition2": {
+        "url": "/estateplat-cadastre/lpbGl/getCxtj2ByCxfs"
+      },
+      "checkCondition":{
+        "url":"/estateplat-cadastre/lpbGl/check"
+      },
+      "queryInterface": {
+        "url": "/estateplat-cadastre/lpbGl/getLpbJson"
+      },
+      "viewInterface": {
+        "url": "/estateplat-cadastre/lpbGl/getFwhsJson"
+      },
+      "relatedInterface": {
+        "url": "/estateplat-cadastre/lpbGl/correlate"
+      },
+      "canceldInterface": {
+        "url": "/estateplat-cadastre/lpbGl/cancel"
+      }
+    }
+}

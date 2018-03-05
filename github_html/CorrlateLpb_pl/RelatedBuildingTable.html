@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
+    <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" type="text/css"
+          rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../js/thirdparty/laypage/skin/laypage.css" id="laypagecss">
+    <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../../js/thirdparty/layer/layer.js"></script>
+    <script src="../../js/thirdparty/laypage/laypage.js"></script>
+    <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+    <script src="../../js/CorrelateLpb/RelatedBuildingTable.js"></script>
+    <!--[if IE]><script type="text/javascript" src="../js/thirdparty/excanvas/excanvas.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/html5.js"></script>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/respond.min.js"></script>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/PIE_IE678.js"></script>
+    <![endif]-->
+    <title>楼盘表关联</title>
+    <style>
+        .form-rightmargin {
+            margin-right: 15px;
+        }
+    </style>
+</head>
+<body>
+<br/>
+<div class="center-block" style="text-align: center">
+    <div id="headPanel">
+        <form class="form-inline text-info" role="form" style="margin-bottom: 10px">
+            <div class="form-group">
+                <label for="DJH" id="lblDJH"></label>
+                <input type="text" class="form-control form-rightmargin" id="DJH"
+                       style="width: 200px" readonly>
+            </div>
+            <div class="form-group">
+                <label for="FWLX">不动产房屋类型：</label>
+                <select class="form-control form-rightmargin" id="FWLX">
+                    <option>户</option>
+                    <option>层</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Target">关联对象：</label>
+                <input type="text" class="form-control form-rightmargin" id="Target" style="width: 150px"
+                       readonly>
+            </div>
+        </form>
+    </div>
+    <hr/>
+    <div id="conditionPanel">
+        <form class="form-inline" role="form" style="margin-bottom: 10px">
+            <div class="form-group" style="margin-right: 5px" id="divCondition1">
+                <label class="sr-only" for="condition">按XX查询</label>
+                <select class="form-control input-sm search-select chosen-select" id="condition">
+                </select>
+            </div>
+            <div class="form-group" id="divCondition2">
+                <label for="condition1">查询条件：</label>
+                <select class="form-control input-sm search-select chosen-select" id="condition1">
+                </select>
+            </div>
+            <div class="form-group" style="margin-right: 5px">
+                <input type="text" class="form-control" id="conditionInput1" placeholder="请输入查询条件">
+            </div>
+            <div class="form-group" id="divCondition3">
+                <label for="condition2" class="sr-only">查询条件2</label>
+                <select class="form-control input-sm search-select chosen-select" id="condition2">
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="conditionInput2" placeholder="请输入查询条件">
+            </div>
+            <button type="button" class="btn btn-primary btn-sm fa fa-search" id="queryBtn"></button>
+        </form>
+    </div>
+    <div id="resultPanel">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="text-center"><input type="checkbox" id="checkall" name="checkall"/></th>
+                <th class="text-center">隶属宗地</th>
+                <th class="text-center">房屋名称</th>
+                <th class="text-center">逻辑幢号</th>
+                <th class="text-center">坐落地址</th>
+                <th class="text-center">房屋用途</th>
+                <th class="text-center">操作项</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+        <div id="pageTool" class="text-center"></div>
+        <div class="text-center">
+            <button type="button" class="btn btn-default" id="btnCorrelate">关联</button>
+            <button type="button" class="btn btn-default" id="btnCancelCorrelate">取消关联</button>
+        </div>
+    </div>
+</div>
+
+<script id="conditionTpl" type="text/x-handlebars-template">
+    {{#condition}}
+    <option value="{{csz}}">{{csmc}}</option>
+    {{/condition}}
+</script>
+
+<script id="resultTpl" type="text/x-handlebars-template">
+    <tr fw_index="{{FW_DCB_INDEX}}" djh="{{LSZD}}">
+        <td><input type="checkbox" name="rowCheck"/></td>
+        <td id="dcb-djh" class="table-aligin-center dcb-djh">{{LSZD}}</td>
+        <td class="table-aligin-center">{{FWMC}}</td>
+        <td class="table-aligin-center">{{LJZH}}</td>
+        <td class="table-aligin-center">{{ZLDZ}}</td>
+        <td class="table-aligin-center">{{FWYT}}</td>
+        <td>
+            <span class="text-primary operation-view" style="cursor: pointer" fw_index="{{FW_DCB_INDEX}}"
+                  djh="{{LSZD}}">查看</span>
+            <span class="text-primary operation-relate" style="cursor: pointer" fw_index="{{FW_DCB_INDEX}}"
+                  <!--djh="{{LSZD}}">关联</span>-->
+            <span class="text-primary operation-cancel" style="cursor: pointer" fw_index="{{FW_DCB_INDEX}}">取消</span>
+        </td>
+    </tr>
+</script>
+</body>
+</html>

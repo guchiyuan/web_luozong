@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+  <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" type="text/css" rel="stylesheet">
+  <link href="../../js/thirdparty/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+  <title>导入房产数据库预测楼盘表</title>
+</head>
+
+<body>
+  <form class="form-horizontal" action="" method="post">
+    <div class="panel panel-default">
+      <div class="col-xs-12 panel-heading">
+        <div class="control-group col-xs-4">
+          <label class="text-center col-xs-6 form-label" for="queryLx" style="padding-top:7px">查询条件</label>
+          <div class="col-xs-6">
+            <select id="queryLx" class="form-control" name="">
+              </select>
+          </div>
+        </div>
+        <div class="control-group col-xs-8">
+          <div class="col-xs-10">
+            <input id="queryCondition" class="form-control" type="text" name="" value="">
+          </div>
+          <div style="padding-top:2px">
+            <button id="queryBtn" class="btn btn-primary btn-sm fa fa-search" type="button" name="button"></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <table class="table" id="tbLpb">
+        </table>
+      </div>
+
+      <div class="panel-footer form-inline">
+        <div class="checkbox">
+          <label>
+            <input id="drzhsOption" type="checkbox">导入子户室
+          </label>
+        </div>
+        <div class="checkbox">
+          <label>
+            <input id="fgyysjOption" type="checkbox">覆盖已有数据
+          </label>
+        </div>
+        <button id="importBtn" class="pull-right" type="button" name="button">导入</button>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </form>
+
+  <!-- 动态条件显示模板 -->
+  <script id="queryLxTpl" type="text/x-tpl-handlebars">
+    {{#condition}}
+    <option value={{cxzd}}>{{cxmc}}</option>
+    {{/condition}}
+  </script>
+
+  <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap/js/bootstrap-v3.min.js"></script>
+  <script src="../../js/thirdparty/layer/layer.js"></script>
+  <script src="../../js/thirdparty/laypage/laypage.js"></script>
+  <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+  <script src="../../js/ImportDatabaseLpb/ImportDatabaseYcLpb.js"></script>
+</body>
+
+</html>

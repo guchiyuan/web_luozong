@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" rel="stylesheet">
+  <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css" rel="stylesheet">
+  <link href="../../js/thirdparty/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
+  <!-- <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.css" rel="stylesheet"> -->
+  <title>新建独幢</title>
+  <style media="screen">
+  </style>
+</head>
+
+<body>
+  <!-- <div id="panelContainer" class="container"> -->
+  <div id="panelLZXX" class="panel panel-default">
+    <div class="panel-heading" style="height:55px">
+      <ul class="pager" style="margin:0">
+        <li>
+          <a id="linkLZXX" href="#">楼幢信息</a>
+        </li>
+        <li>
+          <a id="linkDCXX" href="#">调查信息</a>
+        </li>
+        <li>
+          <a id="linkFCQLR" href="#">房产权利人</a>
+        </li>
+        <li>
+          <a id="linkPMT" href="#">平面图</a>
+        </li>
+      </ul>
+    </div>
+    <div class="panel-body">
+
+
+    </div>
+
+    <div class="panel-footer">
+      <button class="btn btn-default pull-right" id="close">关闭</button>&nbsp;&nbsp;
+      <button class="btn btn-default pull-right" id="save">保存</button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-- </div> -->
+
+
+
+  <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap/js/bootstrap-v3.min.js"></script>
+  <script src="../../js/thirdparty/layer/layer.js"></script>
+  <script src="../../js/thirdparty/laypage/laypage.js"></script>
+  <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table.min.js"></script>
+  <script src="../../js/thirdparty/bootstrap-table/bootstrap-table-zh-CN.min.js"></script>
+  <script src="../../js/thirdparty/laydate/laydate.js"></script>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/handlebars.js/4.0.11/handlebars.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/bootstrap-table.min.js"></script> -->
+  <!-- <script src="https://cdn.bootcss.com/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script> -->
+  <script src="../../js/FWDZGL/addItem.js"></script>
+  <!-- <script src="../../js/FWDZGL/laydate/laydate.js"></script> -->
+
+
+  <!-- 楼幢信息页面模板 -->
+  <script id="panelLZXXTpl" type="x-tpl-mustache">
+    <form id="formLZXX" class="form-inline">
+
+
+      <div class="col-xs-12  form-inline">
+        <label class="col-xs-2 control-label text-right" for="LZXX_GNQMC">功能区名称:</label>
+        <div class="col-xs-9">
+          <input class="form-control" type="text" id="LZXX_GNQMC" name="" value="{{fwmc}}">
+        </div>
+      </div>
+
+      <div class="col-xs-12  form-inline">
+        <label class="col-xs-2 control-label text-right" for="LZXX_BDCDYH">不动产单元号:</label>
+        <div class="col-xs-9">
+          <input class="form-control" id="LZXX_BDCDYH" type="text" name="" value="{{bdcdyh}}">
+        </div>
+      </div>
+
+      <!-- label与input同一层 -->
+      <div class="col-xs-12  form-inline">
+        <label class="col-xs-2 control-label text-right" for="LZXX_ZLDZ">座落地址:</label>
+        <div class="col-xs-9">
+          <input class="form-control" id="LZXX_ZLDZ" type="text" name="" value="{{zldz}}">
+        </div>
+      </div>
+
+      <div class="col-xs-12  form-inline">
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_ZH">幢号:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_ZH" type="text" name="" value="{{dh}}">
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_MPH">门牌号:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_MPH" type="text" name="" value="{{mph}}">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 ">
+
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_FWJG">房屋结构:</label>
+          <div class="col-xs-6">
+            <select class="form-control" id="LZXX_FWJG" name="">
+              <option value="1">钢</option>
+              <option value="2">混合</option>
+              <option value="3">砼</option>
+              <option value="4">混</option>
+              <option value="5">砖</option>
+              <option value="6">其它</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_FWYT">房屋用途:</label>
+          <div class="col-xs-6">
+            <select class="form-control" id="LZXX_FWYT" name="">
+              <option value="10">住宅</option>
+              <option value="11">成套住宅</option>
+              <option value="111">别墅</option>
+              <option value="112">高档公寓</option>
+              <option value="20">工业、交通、仓储</option>
+              <option value="21">工业</option>
+              <option value="22">公用设施</option>
+              <option value="23">铁路</option>
+              <option value="24">民航</option>
+              <option value="25">航运</option>
+              <option value="26">公交运输</option>
+              <option value="27">仓储</option>
+              <option value="30">商业、金融、信息</option>
+              <option value="31">商业服务</option>
+              <option value="32">经营</option>
+              <option value="33">旅游</option>
+              <option value="34">金融保险</option>
+              <option value="35">电讯信息</option>
+              <option value="40">教育、医疗卫生、科研</option>
+              <option value="41">教育</option>
+              <option value="42">医疗卫生</option>
+              <option value="43">科研</option>
+              <option value="50">文化、娱乐、体育</option>
+              <option value="51">文化</option>
+              <option value="52">新闻</option>
+              <option value="53">娱乐</option>
+              <option value="54">园林绿化</option>
+              <option value="55">体育</option>
+              <option value="60">办公</option>
+              <option value="12">非成套住宅</option>
+              <option value="70">军事</option>
+              <option value="13">集体宿舍</option>
+              <option value="80">其他</option>
+              <option value="81">涉外</option>
+              <option value="82">宗教</option>
+              <option value="83">监狱</option>
+              <option value="84">物管用房</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 ">
+
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_ZDMJ">占地面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_ZDMJ" type="text" name="" value="{{zzdmj}}">
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <label class="col-xs-4 control-label text-right" for="LZXX_YDMJ">用地面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_YDMJ" type="text" name="" value="{{zydmj}}">
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 ">
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_FWCS">房屋层数:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_FWCS" type="text" name="" value="{{fwcs}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_DSCS">地上层数:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_DSCS" type="text" name="" value="{{dscs}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_DXCS">地下层数:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_DXCS" type="text" name="" value="{{dxcs}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_YCJZMJ">预测建筑面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_YCJZMJ" type="text" name="" value="{{ycjzmj}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_YCDXMJ">预测地下面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_YCDXMJ" type="text" name="" value="{{ycdxmj}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_YCQTMJ">预测其它面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_YCQTMJ" type="text" name="" value="{{ycqtmj}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12">
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_SCJZMJ">实测建筑面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_SCJZMJ" type="text" name="" value="{{scjzmj}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_SCDXMJ">实测地下面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_SCDXMJ" type="text" name="" value="{{scdxmj}}">
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <label class="col-xs-6 control-label text-right" for="LZXX_SCQTMJ">实测其它面积:</label>
+          <div class="col-xs-6">
+            <input class="form-control" id="LZXX_SCQTMJ" type="text" name="" value="{{scqtmj}}">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xs-12 ">
+
+        <label class="col-xs-2 control-label text-right" for="LZXX_JGRQ">竣工日期:</label>
+        <div class="col-xs-9">
+          <input class="form-control" id="LZXX_JGRQ" type="text" name="" value="{{format jgrq}}">
+        </div>
+
+      </div>
+
+      <div class="col-xs-12 ">
+
+        <label class="col-xs-2 control-label text-right" for="LZXX_BZ">备注:</label>
+        <div class="col-xs-9">
+          <textarea class="form-control" id="LZXX_BZ" name="name"></textarea>
+        </div>
+
+      </div>
+
+    </form>
+  </script>
+
+  <!-- 调查信息页面模板 -->
+  <script id="panelDCXXTpl" type="x-tpl-mustache">
+    <form class="form-inline" id="formDCXX">
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_CQLY">产权来源:</label>
+          <textarea class="form-control" id="DCXX_CQLY" name="name">{{cqly}}</textarea>
+        </div>
+
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_GYQK">共有情况:</label>
+          <textarea class="form-control" id="DCXX_GYQK" name="name">{{gyqk}}</textarea>
+        </div>
+      </div>
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_FJSM">附加说明:</label>
+          <textarea class="form-control" id="DCXX_FJSM" name="name">{{fjsm}}</textarea>
+        </div>
+        <div class="col-xs-6 form-group form-inline">
+          <label class="form-label text-right" for="DCXX_DCYJ">调查意见:</label>
+          <textarea class="form-control" id="DCXX_DCYJ" name="name">{{dcyj}}</textarea>
+        </div>
+      </div>
+      <div class="col-xs-12 form-group form-inline">
+        <div class="col-xs-6 form-group form-inline col-md-4">
+          <label class="form-label text-right" for="DCXX_DCZ">调查者:</label>
+          <input class="form-control" type="text" id="DCXX_DCZ" name="" value="{{dcz}}">
+        </div>
+        <div class="col-xs-6 form-group form-inline col-md-4 col-md-push-4">
+          <label class="form-label text-right" for="DCXX_DCSJ">调查时间:</label>
+          <input class="form-control" type="text" id="DCXX_DCSJ" name="" value="{{format dcsj}}">
+        </div>
+      </div>
+    </form>
+  </script>
+
+  <!-- 发产权利人详细信息模板 -->
+  <script id="panelFCQLRTpl" type="x-tpl-mustache">
+    <div id="toolbarQLR">
+      <a id="addQLR" class="btn btn-primary btn-xs btn-add" href="javascript:addQLR();">添加权利人</a>
+    </div>
+    <table class="table" id="tb_FCQLR">
+    </table>
+  </script>
+
+  <!-- 平面图信息模板 -->
+  <script id="panelPMTTpl" type="x-tpl-mustache">
+
+  </script>
+
+  <!-- 房屋类型条件显示模板 -->
+  <!-- <script id="XMDZGLConditionTpl" type="text/x-tpl-handlebars">
+    {{#condition}}
+    <option value="">{{fwlx}}</option>
+    {{/condition}}
+  </script> -->
+
+</body>
+
+</html>

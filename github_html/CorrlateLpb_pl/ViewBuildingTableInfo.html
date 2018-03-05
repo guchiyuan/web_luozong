@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="../../js/thirdparty/font-awesome/css/font-awesome.css" type="text/css"
+          rel="stylesheet">
+    <link href="../../js/thirdparty/bootstrap/css/bootstrap-v3.min.css" type="text/css"
+          rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../../js/thirdparty/laypage/skin/laypage.css" id="laypagecss">
+    <script src="../../js/thirdparty/jquery/jquery-1.11.1.min.js"></script>
+    <script src="../../js/thirdparty/handlebars/handlebars-v4.0.5.min.js"></script>
+    <script src="../../js/thirdparty/laypage/laypage.js"></script>
+    <script src="../../js/CorrelateLpb/ViewBulidingTableInfo.js"></script>
+    <!--[if IE]><script type="text/javascript" src="../js/thirdparty/excanvas/excanvas.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/html5.js"></script>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/respond.min.js"></script>
+    <script type="text/javascript" src="../js/thirdparty/h-ui/lib/PIE_IE678.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div id="viewRows" class="text-center table-responsive">
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th class="text-center" style="min-width: 58px">房间号</th>
+            <th class="text-center" style="min-width: 58px">层高</th>
+            <th class="text-center" style="min-width: 58px">单元号</th>
+            <th class="text-center" style="min-width: 58px">层号</th>
+            <th class="text-center" style="min-width: 58px">规划用途</th>
+            <th class="text-center" style="min-width: 58px">房屋类型</th>
+            <th class="text-center" style="min-width: 58px">房屋性质</th>
+            <th class="text-center" style="min-width: 58px">户室主键</th>
+            <th class="text-center" style="min-width: 58px">房间不动产单元编号</th>
+            <th class="text-center" style="min-width: 58px">物理层数</th>
+            <th class="text-center" style="min-width: 58px">定义层数</th>
+            <th class="text-center" style="min-width: 58px">室序号</th>
+            <th class="text-center" style="min-width: 58px">权利状态</th>
+            <th class="text-center" style="min-width: 58px">房屋主键</th>
+            <th class="text-center" style="min-width: 58px">不动产状态</th>
+            <th class="text-center" style="min-width: 58px">户室图主键</th>
+        </tr>
+        </thead>
+        <tbody id="tableBody">
+        </tbody>
+    </table>
+    <div id="pageTool" class="text-center"></div>
+</div>
+<script id="rowsTpl" type="text/x-handlebars-template">
+    {{#each rows}}
+    <tr>
+        <td>{{FJH}}</td>
+        <td>{{CG}}</td>
+        <td>{{DYH}}</td>
+        <td>{{CH}}</td>
+        <td>{{GHYT}}</td>
+        <td>{{FWLX}}</td>
+        <td>{{FWXZ}}</td>
+        <td>{{FW_HS_INDEX}}</td>
+        <td>{{BDCDYH}}</td>
+        <td>{{WLCS}}</td>
+        <td>{{DYCS}}</td>
+        <td>{{SXH}}</td>
+        <td>{{QLZT}}</td>
+        <td>{{FW_DCB_INDEX}}</td>
+        <td>{{BDCZT}}</td>
+        <td>{{FW_HST_INDEX}}</td>
+    </tr>
+    {{/each}}
+</script>
+</body>
+</html>
