@@ -1,0 +1,55 @@
+<!--在这里编写html代码-->
+<div class="panel-title">房屋独幢管理</div>
+<div class="panel-body panel-border">
+  <div class="tab-pane" id="FWDZGL-panel">
+    <div id="FWDZGLQueryPanel">
+      <form id="FWDZGLayerForm" class="form-horizontal">
+        <div class="form-group">
+          <label class="col-xs-4 control-label text-right">行政单位</label>
+          <div class="col-xs-7">
+            <select id="FWDZGL_XZDW" class="form-control ">
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-xs-4 control-label text-right">隶属宗地</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control input-sm layer-input" id="FWDZGL_queryValLSZD" placeholder="请输入隶属宗地" value="">
+            <!-- 320802003004GB00015 -->
+          </div>
+        </div>
+
+        <div class="btn-opt text-center">
+          <a id="FWDZGLSearchBtn" class="btn btn-primary btn-sm" data-loading-text="查询中 ...">
+                        <i class="iconfont">&#xe602;</i>查询
+          </a>
+        </div>
+      </form>
+    </div>
+    <div id="FWDZGLResultPanel"></div>
+  </div>
+</div>
+
+<!-- 图层查询结果反馈信息模板 -->
+<script id="FWDZGLResultTpl" type="x-tpl-mustache">
+  <div class="row result-info" style="padding:0px 30px;">
+    <span class="text-primary">共 <strong>{{size}}</strong>&nbsp;条记录</span>
+    <button id="FWDZGLReturnBtn" class="btn btn-primary btn-xs pull-right">
+      <i class="iconfont">&#xe643;</i>返回
+    </button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button id="FWDZGLAddBtn" class="btn btn-primary btn-xs pull-right">
+      <i class="iconfont"></i>新增项目
+    </button>
+  </div>
+  <div id="FWDZGLResultList" style="padding-top:15px;"></div>
+  <div id="FWDZGL_pageTool" class="text-center"></div>
+</script>
+
+<!-- 动态条件显示模板 -->
+<script id="FWDZGLConditionTpl" type="text/x-tpl-handlebars">
+  {{#condition}}
+  <option value="{{xzqdm}}">{{xzqdm}}</option>
+  {{/condition}}
+</script>

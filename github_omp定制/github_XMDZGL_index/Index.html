@@ -1,0 +1,63 @@
+<!--在这里编写html代码-->
+<div class="panel-title">项目多幢管理</div>
+<div class="panel-body panel-border">
+  <div class="tab-pane" id="XMDZGL-panel">
+    <div id="XMDZGLQueryPanel">
+      <form id="XMDZGLayerForm" class="form-horizontal">
+        <div class="form-group">
+          <label class="col-xs-4 control-label text-right">行政单位</label>
+          <div class="col-xs-7">
+            <select id="XMDZGL_XZDW" class="form-control ">
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-xs-4 control-label text-right">项目名称</label>
+          <div class="col-xs-7">
+            <input type="text" class="form-control input-sm layer-input query-val" id="XMDZGL_queryValXMMC" placeholder="请输入项目名称" value="">
+          </div>
+        </div>
+        <div>
+          <div class="form-group">
+            <label class="col-xs-4 control-label text-right">隶属宗地</label>
+            <div class="col-xs-7">
+              <input type="text" class="form-control input-sm layer-input" id="XMDZGL_queryValLSZD" placeholder="请输入隶属宗地" value="">
+            </div>
+          </div>
+        </div>
+        <div class="btn-opt text-center">
+          <a id="XMDZGLSearchBtn" class="btn btn-primary btn-sm" data-loading-text="查询中 ...">
+                        <i class="iconfont">&#xe602;</i>查询
+          </a>
+          <!-- <a id="XMDZGLResetBtn" class="btn btn-default btn-sm">
+            <i class="iconfont">&#xe644;</i>重置
+          </a> -->
+        </div>
+      </form>
+    </div>
+    <div id="XMDZGLResultPanel"></div>
+  </div>
+</div>
+
+<!-- 图层查询结果反馈信息模板 -->
+<script id="XMDZGLResultTpl" type="x-tpl-mustache">
+  <div class="row result-info" style="padding:0px 30px;">
+    <span class="text-primary">共 <strong>{{size}}</strong>&nbsp;条记录</span>
+    <button id="XMDZGLReturnBtn" class="btn btn-primary btn-xs pull-right">
+      <i class="iconfont">&#xe643;</i>返回
+    </button>
+    <div class="pull-right">&nbsp;&nbsp;</div>
+    <button id="XMDZGLAddBtn" class="btn btn-primary btn-xs pull-right">
+      <i class="iconfont"></i>新增项目
+    </button>
+  </div>
+  <div id="XMDZGLResultList" style="padding-top:15px;"></div>
+  <div id="XMDZGL_pageTool" class="text-center"></div>
+</script>
+
+<!-- 动态条件显示模板 -->
+<script id="XMDZGLConditionTpl" type="text/x-tpl-handlebars">
+  {{#condition}}
+  <option value="{{xzqdm}}">{{xzqdm}}</option>
+  {{/condition}}
+</script>

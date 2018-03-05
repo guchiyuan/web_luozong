@@ -1,0 +1,93 @@
+<div class="panel-title">房产数据库楼盘表导入</div>
+<div class="panel-body panel-border">
+  <div class="tab-pane" id="importDatabaseLpb_panel">
+    <div id="importDatabaseLpbQueryPanel"></div>
+    <div id="importDatabaseLpbResultPanel"></div>
+    <div id="importDatabaseLpbSpatialQueryPanel" class="row text-primary">
+      <div class="col-sm-3 col-xs-3"><span class="spatial-geo" data-type="point" title="点选"><i class="iconfont">&#xe610;</i></span></div>
+      <div class="col-sm-3 col-xs-3"><span class="spatial-geo" data-type="polyline" title="线选"><i class="iconfont">&#xe619;</i></span></div>
+      <div class="col-sm-3 col-xs-3"><span class="spatial-geo" data-type="rect" title="框选"><i class="iconfont">&#xe627;</i></span> </div>
+      <div class="col-sm-3 col-xs-3"><span class="spatial-geo" data-type="polygon" title="多边形选择"><i class="iconfont">&#xe62c;</i></span></div>
+    </div>
+  </div>
+</div>
+<!-- 图层查询默认显示 -->
+<script id="importDatabaseLpbLayerSelectTpl" type="x-tpl-handlebars">
+  <form id="importDatabaseLpbLayerForm" class="form-horizontal">
+    <div id="importDatabaseLpbLx" class="form-group">
+      <label class="col-xs-4 control-label text-right">导入类型：</label>
+      <div class="col-xs-7">
+        <select id="importDatabaseLpbLxSelect" class="form-control input-sm search-select chosen-select">
+                <option value="ycLpb">预测楼盘表</option>
+                <option value="scLpb">实测楼盘表</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="importDatabaseLpbLayerSelect" class="form-group">
+      <label class="col-xs-4 control-label text-right">查询图层：</label>
+      <div class="col-xs-7">
+        <select id="importDatabaseLpbLayersSelect" class="form-control input-sm search-select chosen-select">
+                {{#each layers}}
+                    <option value="{{serviceId}}-{{layerIndex}}">{{layerName}}</option>
+                {{/each}}
+        </select>
+      </div>
+    </div>
+    <div id="importDatabaseLpbLayerCondition">
+    </div>
+    <div>
+      <div class="form-group t-input">
+        <label class="col-xs-4 control-label text-right">查询条件：</label>
+        <div class="col-xs-7">
+          <input type="text" class="form-control input-sm layer-input" id="query-val" placeholder="请输入查询条件">
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-opt">
+      <a id="importDatabaseLpbSearchBtn" class="btn btn-primary btn-sm" data-loading-text="查询中 ...">
+                <i class="iconfont">&#xe602;</i>查询
+            </a> &nbsp;&nbsp;
+      <a id="importDatabaseLpbResetBtn" class="btn btn-default btn-sm">
+                <i class="iconfont">&#xe644;</i>重置
+            </a>
+    </div>
+  </form>
+</script>
+
+<!-- 图层查询结果反馈信息模板 -->
+<script id="importDatabaseLpbResultTpl" type="x-tpl-mustache">
+  <div class="row result-info">
+    <span class="text-primary">共 <strong>{{size}}</strong>&nbsp;条记录</span>
+    <button id="importDatabaseLpbReturnBtn" class="btn btn-primary btn-xs pull-right">
+		    <i class="iconfont">&#xe643;</i>返回
+		</button>
+  </div>
+  <div id="importDatabaseLpb_result" style="padding-top:15px;"></div>
+  <div id="pageTool" class="text-center"></div>
+</script>
+<!-- 动态条件显示模板 -->
+<script id="importDatabaseLpbSearchTpl" type="x-tpl-mustache">
+  <div class="form-group t-input">
+    <label class="col-xs-4 control-label text-right">查询字段：</label>
+    <div class="col-xs-7">
+      <select class="form-control" id="queryFields">
+              {{#each fields}}
+              <option class="query-field" name="{{name}}">{{alias}}</option>
+              {{/each}}
+          </select>
+    </div>
+  </div>
+</script>
+
+<!--信息窗-->
+<script id="importDatabaseLpbInfoContentTpl" type="x-tpl-mustache">
+  <div class="info-content">
+    <ul style="text-align:left;">
+      {{#data}}
+      <li title="{{value}}">{{key}}:{{value}}</li>
+      {{/data}}
+    </ul>
+  </div>
+</script>
