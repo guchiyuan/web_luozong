@@ -21,38 +21,38 @@ define(["dojo/_base/declare",
   "map/component/ChosenSelect",
   "static/thirdparty/laydate/laydate",
   "static/thirdparty/bootstrap/js/bootstrap-v3.min"
-], function(declare, lang, arrayUtil, on, layer, Mustache, Handlebars, SlimScroll, laypage, Draw, Graphic, esriLang,
+], function (declare, lang, arrayUtil, on, layer, Mustache, Handlebars, SlimScroll, laypage, Draw, Graphic, esriLang,
   QueryTask, FeatureSet, MapUtils, MapPopup, JsonConverters, BaseWidget, GeometryIO, ListDataRenderer, ChosenSelect) {
-  
+
   var STATE_QUERY = "query";
   var STATE_RESULT = "result";
 
   var DEL_FWDZ = "delFwDz";
   var QUERY_FWDZJSON = "queryFwDzJson";
   var GET_XZQDM = "getXzqdm";
-  var ADDRESS_FWDZ = "http://192.168.50.169:8083/estateplat-cadastre/fwDzGl/";
-  var ADDRESS_BDCDY = "http://192.168.50.169:8083/estateplat-cadastre/bdcdy/";
+  // var ADDRESS_FWDZ = "http://192.168.50.169:8083/estateplat-cadastre/fwDzGl/";
+  // var ADDRESS_BDCDY = "http://192.168.50.169:8083/estateplat-cadastre/bdcdy/";
 
   var HOSTADDRESS = 'http://' + window.location.host;
   // var HOSTADDRESS = 'http://192.168.50.169:8083';
-  // var ADDRESS_FWDZ = HOSTADDRESS + "/estateplat-cadastre/fwDzGl/";
-  // var ADDRESS_BDCDY = HOSTADDRESS + "/estateplat-cadastre/bdcdy/";
+  var ADDRESS_FWDZ = HOSTADDRESS + "/estateplat-cadastre/fwDzGl/";
+  var ADDRESS_BDCDY = HOSTADDRESS + "/estateplat-cadastre/bdcdy/";
 
 
   var $attrQueryPanel, $qResultPanel, $qSearchBtn, $lyrSelector;
   var _currentState = STATE_QUERY;
   var _queryConfig;
   var query = declare([BaseWidget], {
-    constructor: function() {},
+    constructor: function () {},
 
-    onCreate: function() {
+    onCreate: function () {
       _queryConfig = this.getConfig();
       _init();
     },
 
-    onPause: function() {},
+    onPause: function () {},
 
-    onOpen: function() {}
+    onOpen: function () {}
   });
 
   /**
@@ -68,28 +68,30 @@ define(["dojo/_base/declare",
 
     //从数据库表里获取行政单位，作为option添加到行政单位的select里
     $.ajax({
-      // url: "/omp/static/js/map/widgets/XMDZGL/xzqdm.json",
-      // dataType: "json",
-      // type: 'GET',
-      // async: false,
       url: ADDRESS_BDCDY + GET_XZQDM,
       dataType: 'jsonp',
       jsonp: "callback",
-      success: function(data) {
-        // $("#XZDW").append("<option value='" + data[0].xzqdm + "'>" + data[0].xzqdm + "</option>");
+      success: function (data) {
         loadSelectOptions($("#FWDZGL_XZDW"), data);
       },
-      error: function() {
+      error: function () {
         alert("完了");
       }
     });
 
     //查询图层
-    $qSearchBtn.on('click', function() {
+    $qSearchBtn.on('click', function () {
       validateForm();
       // renderQueryResult(items_fake);
       renderToResultList();
 
+    });
+
+    //清空重置监听
+    $("#FWDZGLResetBtn").on('click', function () {
+      var _selItem = $lyrSelector.val();
+      $("#FWDZGLLayerForm")[0].reset();
+      $lyrSelector.val(_selItem);
     });
   }
 
@@ -127,7 +129,7 @@ define(["dojo/_base/declare",
       data: data,
       type: 'GET',
       dataType: 'jsonp',
-      success: function(r) {
+      success: function (r) {
         console.log(r);
         console.log(data);
         // deleteQLRNull(r.rows);
@@ -135,7 +137,7 @@ define(["dojo/_base/declare",
         // renderQueryResult(r);
         showPageTool("FWDZGL_pageTool", r.total, data.page, data);
       },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status);
         console.log(textStatus);
       }
@@ -176,7 +178,7 @@ define(["dojo/_base/declare",
     var options = [];
     // var responseData = data.data[0];
     var responseData = data;
-    $.each(responseData, function(idx, obj) {
+    $.each(responseData, function (idx, obj) {
       // console.log(obj.xzqdm);
       options.push({
         xzqdm: obj.xzqdm
@@ -223,15 +225,15 @@ define(["dojo/_base/declare",
       railDraggable: true
     });
 
-    listDataRenderer.on('edit', function(item) {
+    listDataRenderer.on('edit', function (item) {
       editItem(item);
     });
 
-    listDataRenderer.on('delete', function(item) {
+    listDataRenderer.on('delete', function (item) {
       deleteItem(item);
     });
 
-    $("#FWDZGLAddBtn").on("click", function() {
+    $("#FWDZGLAddBtn").on("click", function () {
       var lszd = $("#FWDZGL_queryValLSZD").val();
       layer.open({
         type: 2,
@@ -246,7 +248,7 @@ define(["dojo/_base/declare",
     });
 
     //返回查询界面
-    $("#FWDZGLReturnBtn").on('click', function() {
+    $("#FWDZGLReturnBtn").on('click', function () {
       changeState(STATE_QUERY);
     });
 
@@ -270,7 +272,7 @@ define(["dojo/_base/declare",
       last: pageCount,
       prev: false,
       next: false,
-      jump: function(obj, first) {
+      jump: function (obj, first) {
         if (!first) {
           data.page = obj.curr;
           $.ajax({
@@ -278,7 +280,7 @@ define(["dojo/_base/declare",
             dataType: "jsonp",
             type: 'GET',
             data: data,
-            success: function(r) {
+            success: function (r) {
               renderQueryResult(r.rows);
               showPageTool("FWDZGL_pageTool", r.total, data.page, data);
             }
@@ -299,7 +301,7 @@ define(["dojo/_base/declare",
       content: _queryConfig.interfaceHost + _queryConfig.editItemAddress + '?fw_dcb_index=' + data.FW_DCB_INDEX, //iframe的url
       // content: 'http://192.168.50.121:8083/estateplat-cadastre/static/html/FWDZGL/editItem.html??fw_dcb_index=' + data.FW_DCB_INDEX, //iframe的url
       //父传子的关键是把通信放在success后面的回调里
-      success: function() {
+      success: function () {
 
       }
       // end: function(layero, index) {
@@ -315,22 +317,22 @@ define(["dojo/_base/declare",
       // end: function(layero, index) {
       //      renderToResultList();
       //   }
-    }, function(index) {
+    }, function (index) {
       $.ajax({
         url: ADDRESS_FWDZ + DEL_FWDZ,
         dataType: "jsonp",
         data: {
           "fwDcbIndex": data.FW_DCB_INDEX
         },
-        success: function() {
+        success: function () {
           layer.msg("已删除此项目信息！", {
             time: 1000,
-            end: function() {
+            end: function () {
               renderToResultList();
             }
           });
         },
-        error: function(r) {
+        error: function (r) {
           console.log(r);
           layer.msg("此项目删除失败！")
         }

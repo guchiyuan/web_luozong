@@ -3,7 +3,7 @@
 <div class="panel-body panel-border">
   <div class="tab-pane" id="XMDZGL-panel">
     <div id="XMDZGLQueryPanel">
-      <form id="XMDZGLayerForm" class="form-horizontal">
+      <form id="XMDZGLLayerForm" class="form-horizontal">
         <div class="form-group">
           <label class="col-xs-4 control-label text-right">行政单位</label>
           <div class="col-xs-7">
@@ -27,11 +27,11 @@
         </div>
         <div class="btn-opt text-center">
           <a id="XMDZGLSearchBtn" class="btn btn-primary btn-sm" data-loading-text="查询中 ...">
-                        <i class="iconfont">&#xe602;</i>查询
+            <i class="iconfont">&#xe602;</i>查询
           </a>
-          <!-- <a id="XMDZGLResetBtn" class="btn btn-default btn-sm">
+          <a id="XMDZGLResetBtn" class="btn btn-default btn-sm">
             <i class="iconfont">&#xe644;</i>重置
-          </a> -->
+          </a>
         </div>
       </form>
     </div>
@@ -42,7 +42,8 @@
 <!-- 图层查询结果反馈信息模板 -->
 <script id="XMDZGLResultTpl" type="x-tpl-mustache">
   <div class="row result-info" style="padding:0px 30px;">
-    <span class="text-primary">共 <strong>{{size}}</strong>&nbsp;条记录</span>
+    <span class="text-primary">共
+      <strong>{{size}}</strong>&nbsp;条记录</span>
     <button id="XMDZGLReturnBtn" class="btn btn-primary btn-xs pull-right">
       <i class="iconfont">&#xe643;</i>返回
     </button>

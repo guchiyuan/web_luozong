@@ -23,7 +23,7 @@ define(["dojo/_base/declare",
   "static/thirdparty/bootstrap/js/bootstrap-v3.min"
   // "static/thirdparty/jquery-validation/jquery.validate.min" //添加jquery validation
   // "static/thirdparty/jquery-validation/messages_zh.min" //添加中文提示包
-], function(declare, lang, arrayUtil, on, layer, Mustache, Handlebars, SlimScroll, laypage, Draw, Graphic, esriLang,
+], function (declare, lang, arrayUtil, on, layer, Mustache, Handlebars, SlimScroll, laypage, Draw, Graphic, esriLang,
   QueryTask, FeatureSet, MapUtils, MapPopup, JsonConverters, BaseWidget, GeometryIO, ListDataRenderer, ChosenSelect) {
 
 
@@ -33,32 +33,32 @@ define(["dojo/_base/declare",
   var GET_XZQDM = "getXzqdm";
   var QUERY_FWXMJSON = "queryFwXmJson";
   var DEL_FWXMXX = "delFwXmxx";
-  var ADDRESS_FWXM = "http://192.168.50.169:8083/estateplat-cadastre/fwXmGl/";
-  var ADDRESS_BDCDY = "http://192.168.50.169:8083/estateplat-cadastre/bdcdy/";
+  // var ADDRESS_FWXM = "http://192.168.50.169:8083/estateplat-cadastre/fwXmGl/";
+  // var ADDRESS_BDCDY = "http://192.168.50.169:8083/estateplat-cadastre/bdcdy/";
 
   var HOSTADDRESS = 'http://' + window.location.host;
   // var HOSTADDRESS_API = 'http://192.168.50.169:8083';
-  // var ADDRESS_FWXM = HOSTADDRESS + "/estateplat-cadastre/fwXmGl/";
-  // var ADDRESS_BDCDY = HOSTADDRESS + "/estateplat-cadastre/bdcdy/";
+  var ADDRESS_FWXM = HOSTADDRESS + "/estateplat-cadastre/fwXmGl/";
+  var ADDRESS_BDCDY = HOSTADDRESS + "/estateplat-cadastre/bdcdy/";
 
   var $attrQueryPanel, $qResultPanel, $qSearchBtn, $lyrSelector;
   var _currentState = STATE_QUERY;
-  
+
   // var _queryConfig, _map;
   // var mapPopup = MapPopup.getInstance();
   var _queryConfig;
   var query = declare([BaseWidget], {
-    constructor: function() {},
+    constructor: function () {},
 
-    onCreate: function() {
+    onCreate: function () {
       _queryConfig = this.getConfig();
       _init();
     },
-    onPause: function() {
+    onPause: function () {
       // if (mapPopup.isShowing) mapPopup.closePopup();
       // _map.graphics.clear();
     },
-    onDestroy: function() {
+    onDestroy: function () {
       // if (mapPopup.isShowing) mapPopup.closePopup();
 
     }
@@ -88,21 +88,28 @@ define(["dojo/_base/declare",
       url: ADDRESS_BDCDY + GET_XZQDM,
       dataType: 'jsonp',
       jsonp: "callback",
-      success: function(data) {
+      success: function (data) {
         // $("#XMXX_XZDW").append("<option value='" + data[0].xzqdm + "'>" + data[0].xzqdm + "</option>");
         loadSelectOptions($("#XMDZGL_XZDW"), data);
       },
-      error: function() {
+      error: function () {
         alert("完了");
       }
     });
 
     //查询图层
-    $qSearchBtn.on('click', function() {
+    $qSearchBtn.on('click', function () {
       validateForm();
 
       // renderQueryResult(items_fake);
       renderToResultList();
+    });
+
+    //清空重置监听
+    $("#XMDZGLResetBtn").on('click', function () {
+      var _selItem = $lyrSelector.val();
+      $("#XMDZGLLayerForm")[0].reset();
+      $lyrSelector.val(_selItem);
     });
   }
 
@@ -151,7 +158,7 @@ define(["dojo/_base/declare",
       type: 'GET',
       dataType: 'jsonp',
       // jsonp: "callback",
-      success: function(r) {
+      success: function (r) {
         console.log(r);
         renderQueryResult(r.rows);
         // renderQueryResult(r);
@@ -163,7 +170,7 @@ define(["dojo/_base/declare",
         // });
 
       },
-      error: function(XMLHttpRequest, textStatus, errorThrown) {
+      error: function (XMLHttpRequest, textStatus, errorThrown) {
         console.log(XMLHttpRequest.status);
         console.log(textStatus);
       }
@@ -175,7 +182,7 @@ define(["dojo/_base/declare",
     var options = [];
     // var responseData = data.data[0];
     var responseData = data;
-    $.each(responseData, function(idx, obj) {
+    $.each(responseData, function (idx, obj) {
       // console.log(obj.xzqdm);
       options.push({
         xzqdm: obj.xzqdm
@@ -222,20 +229,20 @@ define(["dojo/_base/declare",
       railDraggable: true
     });
 
-    listDataRenderer.on('edit', function(item) {
+    listDataRenderer.on('edit', function (item) {
       editItem(item);
       // console.log(item);
       // alert("edit!");
     });
 
-    listDataRenderer.on('delete', function(item) {
+    listDataRenderer.on('delete', function (item) {
       // alert("delete!")
       deleteItem(item);
     });
     // //返回查询界面
     // $("#XMDZGLReturnBtn").on('click', lang.hitch(this, changeState, STATE_QUERY));
 
-    $("#XMDZGLAddBtn").on("click", function() {
+    $("#XMDZGLAddBtn").on("click", function () {
       var lszd = $("#XMDZGL_queryValLSZD").val();
       layer.open({
         type: 2,
@@ -253,7 +260,7 @@ define(["dojo/_base/declare",
     });
     // http://192.168.50.121:8083/estateplat-cadastre/static/html/XMDZGL/addItem.html
     //返回查询界面
-    $("#XMDZGLReturnBtn").on('click', function() {
+    $("#XMDZGLReturnBtn").on('click', function () {
       changeState(STATE_QUERY);
     });
 
@@ -277,7 +284,7 @@ define(["dojo/_base/declare",
       last: pageCount,
       prev: false,
       next: false,
-      jump: function(obj, first) {
+      jump: function (obj, first) {
         if (!first) {
           data.page = obj.curr;
           $.ajax({
@@ -285,7 +292,7 @@ define(["dojo/_base/declare",
             dataType: "jsonp",
             type: 'GET',
             data: data,
-            success: function(r) {
+            success: function (r) {
               renderQueryResult(r.rows);
               showPageTool("XMDZGL_pageTool", r.total, data.page, data);
             }
@@ -308,7 +315,7 @@ define(["dojo/_base/declare",
       // content: '/omp/static/js/map/widgets/XMDZGL/editItem.html?fw_xmxx_index=' + data.FW_XMXX_INDEX, //iframe的url
       // content: 'http://192.168.50.121:8083/estateplat-cadastre/static/html/XMDZGL/editItem.html?fw_xmxx_index=' + data.FW_XMXX_INDEX, //iframe的url
       //父传子的关键是把通信放在success后面的回调里
-      success: function() {
+      success: function () {
         // console.log(data.title);
         // var body = layer.getChildFrame('body', index);
         // var input_xmmc = body.contents().find('#XMXX_XMMC');
@@ -329,23 +336,23 @@ define(["dojo/_base/declare",
       // end: function(layero, index) {
       //      renderToResultList();
       //   }
-    }, function(index) {
+    }, function (index) {
       $.ajax({
         url: ADDRESS_FWXM + DEL_FWXMXX,
         dataType: "jsonp",
         data: {
           "fwXmxxIndex": data.FW_XMXX_INDEX
         },
-        success: function() {
+        success: function () {
           layer.msg("已删除此项目信息！", {
             time: 1000,
-            end: function() {
+            end: function () {
               renderToResultList();
             }
           });
           renderToResultList();
         },
-        error: function() {
+        error: function () {
           layer.msg("此项目删除失败！")
         }
       });
@@ -396,12 +403,6 @@ define(["dojo/_base/declare",
         break;
     }
   }
-
-  // //清空重置监听
-  // $("#XMDZGLResetBtn").on('click', function() {
-  //   alert("D");
-  //   $("#XMDZGLayerForm").reset();
-  // });
 
   return query;
 });
