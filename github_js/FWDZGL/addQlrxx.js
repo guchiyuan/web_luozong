@@ -1,8 +1,8 @@
 var tpl, template, html;
 var fwFcqlrIndex;
 var fwDcbIndex = getQueryString("fw_dcb_index");
-// var hostAddress = 'http://' + window.location.host;
-var hostAddress = 'http://192.168.50.169:8083';
+var hostAddress = 'http://' + window.location.host;
+// var hostAddress = 'http://192.168.50.169:8083';
 // var ADDRESS_QLR = "http://192.168.50.121:8083/estateplat-cadastre/qlr/";
 // var ADDRESS_QLR = "http://192.168.50.127:8080/estateplat-cadastre/qlr/";
 var ADDRESS_QLR = hostAddress + "/estateplat-cadastre/qlr/";

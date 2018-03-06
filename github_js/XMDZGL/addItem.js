@@ -1,12 +1,14 @@
 var fwXmxxIndex;
-// var hostAddress = 'http://' + window.location.host;
-var hostAddress = 'http://192.168.50.169:8083';
+var hostAddress = 'http://' + window.location.host;
+// var hostAddress = 'http://192.168.50.169:8083';
 var ADDRESS_FWXM = hostAddress + "/estateplat-cadastre/fwXmGl/";
 var ADDRESS_QLR = hostAddress + "/estateplat-cadastre/qlr/";
 
 // var ADDRESS_FWXM = "http://192.168.50.127:8080/estateplat-cadastre/fwXmGl/";
 // var ADDRESS_QLR = "http://192.168.50.127:8080/estateplat-cadastre/qlr/";
 var ADDRESS_ADDQLR = hostAddress + "/estateplat-cadastre/static/html/XMDZGL/addQlrxx.html";
+var ADDRESS_EDITQLR = hostAddress + "/estateplat-cadastre/static/html/XMDZGL/editQlrxx.html";
+
 
 var ADD_FWXMXX = "addFwXmxx";
 var DEL_FWFCQLR = "delFwFcqlr";

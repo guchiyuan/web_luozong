@@ -1,8 +1,8 @@
 /**
  * Created by zhuyuheng on 2017/4/18.
  */
-// var hostAddress = 'http://' + window.location.host;
-var hostAddress = 'http://192.168.50.169:8083';
+var hostAddress = 'http://' + window.location.host;
+// var hostAddress = 'http://192.168.50.169:8083';
 var path;
 $(function() {
   // var path='http://192.168.200.200/estateplat-cadastre/lpbDr/impLpbXls';

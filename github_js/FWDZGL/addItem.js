@@ -6,13 +6,13 @@ var fwDcbIndex;
 // var ADDRESS_FWDZ = "http://192.168.50.127:8080/estateplat-cadastre/fwDzGl/";
 // var ADDRESS_QLR = "http://192.168.50.127:8080/estateplat-cadastre/qlr/";
 
-// var hostAddress = 'http://' + window.location.host;
-var hostAddress = 'http://192.168.50.169:8083';
+var hostAddress = 'http://' + window.location.host;
+// var hostAddress = 'http://192.168.50.169:8083';
 var ADDRESS_FWDZ = hostAddress + "/estateplat-cadastre/fwDzGl/";
 var ADDRESS_QLR = hostAddress + "/estateplat-cadastre/qlr/";
 //打开新增权利人界面的地址，需要配置
 var ADDRESS_ADDQLR = hostAddress + "/estateplat-cadastre/static/html/FWDZGL/addQlrxx.html";
-var ADDRESS_EDITQLR = 'http://' + window.location.host + "/estateplat-cadastre/static/html/FWDZGL/editQlrxx.html";
+var ADDRESS_EDITQLR = hostAddress + "/estateplat-cadastre/static/html/FWDZGL/editQlrxx.html";
 
 // var QUERY_FWXX = "queryFwxx";
 var QUERY_FWFCQLR = "queryFwFcqlr";

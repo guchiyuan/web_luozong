@@ -1,7 +1,7 @@
 var fwFcqlrIndex = getQueryString("fw_fcqlr_index");
 var fwXmxxIndex = getQueryString("fw_xmxx_index");
-// var hostAddress = 'http://' + window.location.host;
-var hostAddress = 'http://192.168.50.169:8083';
+var hostAddress = 'http://' + window.location.host;
+// var hostAddress = 'http://192.168.50.169:8083';
 var DETAIL_QLRXX = '/estateplat-cadastre/qlr/getQlrxx';
 var SAVE_FCQLR = "/estateplat-cadastre/qlr/saveFwFcqlr";
 
